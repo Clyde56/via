@@ -3,32 +3,56 @@
     "slug": "welcome",
     "title": "欢迎来到我的博客",
     "date": "2026-05-27",
-    "tags": ["blog", "welcome"],
-    "description": "这是我的第一篇博客文章，介绍一下这个博客的功能和使用方法。",
-    "readingTime": 2
+    "tags": [
+      "blog",
+      "welcome"
+    ],
+    "description": "这是我的第一篇博客文章，介绍一下这个博客的功能和使用方法。"
   },
   {
     "slug": "hello-world",
     "title": "Hello World",
     "date": "2026-05-27",
-    "tags": ["blog", "getting-started"],
-    "description": "Welcome to my new blog! This is a sample article demonstrating the features of this blog system.",
-    "readingTime": 2
+    "tags": [
+      "blog",
+      "getting-started"
+    ],
+    "description": "Welcome to my new blog! This is a sample article demonstrating the features of this blog system."
   },
   {
     "slug": "building-static-blog",
     "title": "Building a Static Blog with Pure HTML/CSS/JS",
     "date": "2026-05-26",
-    "tags": ["tech", "tutorial"],
-    "description": "How I built this blog using only vanilla HTML, CSS, and JavaScript, deployed on Cloudflare Pages.",
-    "readingTime": 5
+    "tags": [
+      "tech",
+      "tutorial"
+    ],
+    "description": "How I built this blog using only vanilla HTML, CSS, and JavaScript, deployed on Cloudflare Pages."
   },
   {
     "slug": "markdown-guide",
     "title": "Markdown 语法指南",
     "date": "2026-05-25",
-    "tags": ["guide", "markdown"],
-    "description": "一篇全面的 Markdown 语法参考，包含代码块、表格、列表、引用等常用语法。",
-    "readingTime": 3
+    "tags": [
+      "guide",
+      "markdown"
+    ],
+    "description": "一篇全面的 Markdown 语法参考，包含代码块、表格、列表、引用等常用语法。"
+  },
+  {
+    "slug": "hermes-windows-保姆级配置教程-原生部署-高频实用用法全覆盖-2026最新",
+    "title": "# Hermes Windows 保姆级配置教程｜原生部署\\+高频实用用法全覆盖（2026最新）",
+    "date": "2026-05-27",
+    "tags": [
+      "教程"
+    ],
+    "description": "在 AI 智能体、设备自动化、远程调试领域，Hermes Agent（简称 Hermes）凭借**跨平台兼容、轻量无冗余、原生高性能**的优势，逐渐成为替代传统调试工具、本地智能体部署的首选方案。"
+  },
+  {
+    "slug": "拖",
+    "title": "拖",
+    "date": "2026-05-27",
+    "tags": [],
+    "description": "iyiy"
   }
 ]
