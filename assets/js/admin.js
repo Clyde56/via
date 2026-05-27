@@ -597,15 +597,32 @@ ${content}`;
       return;
     }
 
+    const syncBtn = document.getElementById('sync-all-btn');
+    syncBtn.disabled = true;
+    syncBtn.textContent = '⏳ 同步中...';
+    
     showToast('开始同步所有文章到 GitHub...', 'info');
     
-    const result = await GitHubSync.syncAllArticles();
-    
-    if (result.success > 0) {
-      showToast(`成功同步 ${result.success} 篇文章到 GitHub`, 'success');
-    }
-    if (result.failed > 0) {
-      showToast(`${result.failed} 篇文章同步失败`, 'error');
+    try {
+      const result = await GitHubSync.syncAllArticles();
+      
+      if (result.success > 0 && result.failed === 0) {
+        showToast(`✅ 成功同步 ${result.success} 篇文章到 GitHub`, 'success');
+      } else if (result.success > 0 && result.failed > 0) {
+        showToast(`⚠️ 同步完成：${result.success} 成功，${result.failed} 失败`, 'error');
+      } else if (result.failed > 0) {
+        const errorDetails = result.errors.map(e => `${e.slug}: ${e.error}`).join('\n');
+        console.error('[Sync] Errors:', errorDetails);
+        showToast(`❌ 同步失败：${result.errors[0]?.error || '未知错误'}`, 'error');
+      } else {
+        showToast('没有文章需要同步', 'info');
+      }
+    } catch (e) {
+      console.error('[Sync] Unexpected error:', e);
+      showToast('❌ 同步出错：' + e.message, 'error');
+    } finally {
+      syncBtn.disabled = false;
+      syncBtn.textContent = '🔄 同步所有文章';
     }
   }
 
