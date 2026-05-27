@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>管理后台 - My Blog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-theme" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/admin.css" />
+</head>
+<body>
+  <!-- 登录页面 -->
+  <div id="login-page" class="login-container">
+    <div class="login-card">
+      <h1>🔐 管理后台</h1>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="password">管理密码</label>
+          <input type="password" id="password" placeholder="请输入管理密码" required />
+        </div>
+        <button type="submit" class="btn btn-primary">登录</button>
+        <p class="login-hint">首次使用请设置管理密码</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 管理后台主界面 -->
+  <div id="admin-panel" style="display: none;">
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <h1>📝 博客管理</h1>
+        <nav>
+          <a href="#/" class="nav-link">查看博客</a>
+          <button id="logout-btn" class="btn btn-outline">退出登录</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <!-- 操作栏 -->
+      <div class="admin-toolbar">
+        <button id="new-article-btn" class="btn btn-primary">✏️ 写新文章</button>
+        <div class="toolbar-info">
+          共 <span id="article-count">0</span> 篇文章
+        </div>
+      </div>
+
+      <!-- 文章列表 -->
+      <div id="articles-table-container" class="table-container">
+        <table class="articles-table">
+          <thead>
+            <tr>
+              <th>标题</th>
+              <th>日期</th>
+              <th>标签</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="articles-tbody">
+            <!-- 动态生成 -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 空状态 -->
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <div class="empty-state-icon">📝</div>
+        <h2>还没有文章</h2>
+        <p>点击上方按钮开始写第一篇文章</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- 文章编辑器模态框 -->
+  <div id="editor-modal" class="modal" style="display: none;">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2 id="editor-title">写新文章</h2>
+        <button class="modal-close" id="close-editor">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="article-form">
+          <input type="hidden" id="edit-slug" value="" />
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="article-title">文章标题 *</label>
+              <input type="text" id="article-title" required placeholder="输入文章标题" />
+            </div>
+            <div class="form-group">
+              <label for="article-date">发布日期 *</label>
+              <input type="date" id="article-date" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="article-description">文章摘要</label>
+            <input type="text" id="article-description" placeholder="简短描述文章内容（用于SEO和列表显示）" />
+          </div>
+
+          <div class="form-group">
+            <label for="article-tags">标签（逗号分隔）</label>
+            <input type="text" id="article-tags" placeholder="例如：JavaScript, 教程, 前端" />
+          </div>
+
+          <div class="form-group">
+            <label for="article-author">作者</label>
+            <input type="text" id="article-author" placeholder="留空使用默认作者" />
+          </div>
+
+          <div class="editor-container">
+            <div class="editor-header">
+              <div class="editor-tabs">
+                <button type="button" class="tab-btn active" data-tab="write">编写</button>
+                <button type="button" class="tab-btn" data-tab="preview">预览</button>
+              </div>
+              <div class="editor-actions">
+                <button type="button" class="btn btn-sm" id="insert-code">插入代码块</button>
+                <button type="button" class="btn btn-sm" id="insert-image">插入图片</button>
+              </div>
+            </div>
+            <div class="editor-body">
+              <textarea id="article-content" placeholder="使用 Markdown 格式编写文章内容..."></textarea>
+              <div id="preview-content" class="preview-content" style="display: none;"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="save-draft">保存草稿</button>
+            <button type="submit" class="btn btn-primary">发布文章</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 确认删除模态框 -->
+  <div id="delete-modal" class="modal" style="display: none;">
+    <div class="modal-content modal-small">
+      <div class="modal-header">
+        <h2>确认删除</h2>
+        <button class="modal-close" id="close-delete">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>确定要删除文章 "<span id="delete-article-title"></span>" 吗？</p>
+        <p class="text-danger">此操作不可撤销。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-delete">取消</button>
+        <button class="btn btn-danger" id="confirm-delete">确认删除</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 通知 -->
+  <div id="toast" class="toast" style="display: none;"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/admin.js"></script>
+</body>
+</html>

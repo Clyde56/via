@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "welcome",
+    "title": "欢迎来到我的博客",
+    "date": "2026-05-27",
+    "tags": ["blog", "welcome"],
+    "description": "这是我的第一篇博客文章，介绍一下这个博客的功能和使用方法。",
+    "readingTime": 2
+  },
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2026-05-27",
+    "tags": ["blog", "getting-started"],
+    "description": "Welcome to my new blog! This is a sample article demonstrating the features of this blog system.",
+    "readingTime": 2
+  },
+  {
+    "slug": "building-static-blog",
+    "title": "Building a Static Blog with Pure HTML/CSS/JS",
+    "date": "2026-05-26",
+    "tags": ["tech", "tutorial"],
+    "description": "How I built this blog using only vanilla HTML, CSS, and JavaScript, deployed on Cloudflare Pages.",
+    "readingTime": 5
+  },
+  {
+    "slug": "markdown-guide",
+    "title": "Markdown 语法指南",
+    "date": "2026-05-25",
+    "tags": ["guide", "markdown"],
+    "description": "一篇全面的 Markdown 语法参考，包含代码块、表格、列表、引用等常用语法。",
+    "readingTime": 3
+  }
+]
