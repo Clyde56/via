@@ -1,0 +1,20 @@
+# Cloudflare Pages configuration (wrangler.toml)
+# This file is used by `wrangler pages deploy` for deployment.
+#
+# Installation:
+#   npm install -g wrangler
+#
+# Deployment:
+#   wrangler pages deploy . --project-name=my-blog
+
+name = "my-blog"
+
+compatibility_date = "2026-05-27"
+
+[pages]
+  production_branch = "main"
+
+[[pages.rules]]
+  # For SPA-style apps: handle client-side routing
+  glob = "/*"
+  headers = { X-Content-Type-Options = "nosniff" }

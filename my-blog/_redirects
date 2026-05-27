@@ -1,0 +1,5 @@
+# Cloudflare Pages Redirects
+# Format: source destination status
+
+# SPA routing: all non-file, non-directory requests go to index.html
+/* /index.html 200
