@@ -64,14 +64,23 @@ const GitHubSync = (function () {
       ...options.headers
     };
 
+    console.log(`[GitHub] ${options.method || 'GET'} ${endpoint}`);
+
     const response = await fetch(url, {
       ...options,
       headers
     });
 
     if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      throw new Error(error.message || `GitHub API error: ${response.status}`);
+      let errorMessage = `GitHub API error: ${response.status}`;
+      try {
+        const error = await response.json();
+        errorMessage = error.message || errorMessage;
+        console.error('[GitHub] API Error:', error);
+      } catch (e) {
+        console.error('[GitHub] Could not parse error response');
+      }
+      throw new Error(errorMessage);
     }
 
     return response.json();
@@ -95,7 +104,7 @@ const GitHubSync = (function () {
     const sha = await getFileSha(path);
     const body = {
       message,
-      content: btoa(unescape(encodeURIComponent(content))),
+      content: btoaUtf8(content),
       branch: config.branch
     };
 
@@ -136,28 +145,34 @@ const GitHubSync = (function () {
   // ===== Sync Article to GitHub =====
   async function syncArticle(article, content) {
     if (!isEnabled()) {
-      console.log('GitHub sync not enabled');
+      console.log('[GitHub] Sync not enabled');
       return { success: false, reason: 'not_enabled' };
     }
 
     try {
+      console.log(`[GitHub] Syncing article: ${article.slug}`);
+      
       // Generate markdown content with frontmatter
       const markdown = generateMarkdown(article, content);
       
       // Upload article file
       const articlePath = `${config.articlesPath}/${article.slug}.md`;
+      console.log(`[GitHub] Uploading to: ${articlePath}`);
+      
       await upsertFile(
         articlePath,
         markdown,
-        `📝 ${article.slug === article.title ? 'Update' : 'Add'} article: ${article.title}`
+        `📝 Update article: ${article.title}`
       );
 
       // Update index.json
+      console.log('[GitHub] Updating index.json');
       await updateArticlesIndex();
 
+      console.log(`[GitHub] Successfully synced: ${article.slug}`);
       return { success: true };
     } catch (e) {
-      console.error('Failed to sync article to GitHub:', e);
+      console.error('[GitHub] Failed to sync article:', e);
       return { success: false, error: e.message };
     }
   }
@@ -303,8 +318,13 @@ const GitHubSync = (function () {
   }
 
   // ===== Base64 Encode (UTF-8 safe) =====
-  function btoa(str) {
-    return window.btoa(str);
+  function btoaUtf8(str) {
+    // Convert string to UTF-8 bytes, then to base64
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(str);
+    let binary = '';
+    bytes.forEach(byte => binary += String.fromCharCode(byte));
+    return window.btoa(binary);
   }
 
   // ===== Public API =====
