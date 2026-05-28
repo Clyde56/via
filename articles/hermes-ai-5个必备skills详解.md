@@ -1,7 +1,7 @@
 ---
 title: "Hermes AI 5个必备Skills详解"
 date: 2026-05-28
-tags: ["Hemers.教程"]
+tags: ["Hemers","教程"]
 description: "Hermes 是一款 AI 助手工具，通过安装不同的 Skills（技能插件），可以大幅扩展其功能和应用场景。以下5个Skills能让 Hermes 的实用性翻倍"
 ---## 概述
 
