@@ -20,6 +20,26 @@
     "description": "Welcome to my new blog! This is a sample article demonstrating the features of this blog system."
   },
   {
+    "slug": "building-static-blog",
+    "title": "Building a Static Blog with Pure HTML/CSS/JS",
+    "date": "2026-05-26",
+    "tags": [
+      "tech",
+      "tutorial"
+    ],
+    "description": "How I built this blog using only vanilla HTML, CSS, and JavaScript, deployed on Cloudflare Pages."
+  },
+  {
+    "slug": "markdown-guide",
+    "title": "Markdown 语法指南",
+    "date": "2026-05-25",
+    "tags": [
+      "guide",
+      "markdown"
+    ],
+    "description": "一篇全面的 Markdown 语法参考，包含代码块、表格、列表、引用等常用语法。"
+  },
+  {
     "slug": "hermes-windows-保姆级配置教程-原生部署-高频实用用法全覆盖-2026最新",
     "title": "# Hermes Windows 保姆级配置教程｜原生部署\\+高频实用用法全覆盖（2026最新）",
     "date": "2026-05-27",
@@ -42,9 +62,24 @@
     "title": "Hermes AI 5个必备Skills详解",
     "date": "2026-05-28",
     "tags": [
-      "Hemers",
-      "教程"
+      "Hemers.教程"
     ],
     "description": "Hermes 是一款 AI 助手工具，通过安装不同的 Skills（技能插件），可以大幅扩展其功能和应用场景。以下5个Skills能让 Hermes 的实用性翻倍"
+  },
+  {
+    "slug": "新的备份",
+    "title": "新的备份",
+    "date": "2026-05-29",
+    "tags": [
+      "文本快速同步"
+    ],
+    "description": ""
+  },
+  {
+    "slug": "links",
+    "title": "links",
+    "date": "2026-06-01",
+    "tags": [],
+    "description": "在 AI 智能体、设备自动化、远程调试领域，Hermes Agent（简称 Hermes）凭借**跨平台兼容、轻量无冗余、原生高性能**的优势，逐渐成为替代传统调试工具、本地智能体部署的首选方案。"
   }
 ]
