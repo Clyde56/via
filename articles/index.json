@@ -10,16 +10,6 @@
     "description": "这是我的第一篇博客文章，介绍一下这个博客的功能和使用方法。"
   },
   {
-    "slug": "hello-world",
-    "title": "Hello World",
-    "date": "2026-05-27",
-    "tags": [
-      "blog",
-      "getting-started"
-    ],
-    "description": "Welcome to my new blog! This is a sample article demonstrating the features of this blog system."
-  },
-  {
     "slug": "hermes-windows-保姆级配置教程-原生部署-高频实用用法全覆盖-2026最新",
     "title": "# Hermes Windows 保姆级配置教程｜原生部署\\+高频实用用法全覆盖（2026最新）",
     "date": "2026-05-27",
